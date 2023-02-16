@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "./variables.css"
+import 'react-phone-number-input/style.css';
+
+
+// @ts-ignore
+window.pxToRem = (px: number, baseSize = 16) => `${px / baseSize}rem`;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
