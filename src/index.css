@@ -40,3 +40,8 @@ code {
   outline: none;
 }
 
+.links{
+  text-decoration: none;
+  color: inherit;
+}
+
