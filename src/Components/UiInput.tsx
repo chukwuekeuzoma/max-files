@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import UiIcon from "./UiIcon";
 import UiField from "./UiField";
