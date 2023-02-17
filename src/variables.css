@@ -1,0 +1,18 @@
+:root{
+    /* COLORS */
+    --color-primary: #D19439;
+    --color-primary-100:rgba(209, 148, 57, 0.1);
+    --text-light-100:#F5F5F5;
+    --text-light-200:#757575;
+    --text-dark:#222222;
+
+
+    --color-danger: #FF4248;
+
+    --color-gray: rgb(228, 231, 236);
+
+
+    --input-base-height: 52px;
+    --input-background:rgba(209, 148, 57, 0.1);
+    --input-border:rgba(209, 148, 57, 0.4);
+}
