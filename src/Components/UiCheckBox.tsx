@@ -21,12 +21,13 @@ const StyledCheckbox = styled.input.attrs({ type: "checkbox" })`
   width: 20px;
   height: 20px;
   border-radius: 4px;
-  border: 1px solid var(--color-primary-100);
+  border: 1px solid var(--text-dark);
   background-color: #fff;
   transition: all 0.15s ease-in-out;
 
   &:checked {
     background-color: var(--color-primary);
+    border: 1px solid var(--color-primary-100);
   }
 
   &:hover {
