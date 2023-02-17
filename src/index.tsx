@@ -1,21 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import "./variables.css"
-import 'react-phone-number-input/style.css';
-
+import React, { Suspense } from "react";
+import { RouterProvider } from "react-router-dom";
+import { createRoot } from 'react-dom/client';
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./variables.css";
+import "react-phone-number-input/style.css";
+import Router from "./routes/.";
 
 // @ts-ignore
 window.pxToRem = (px: number, baseSize = 16) => `${px / baseSize}rem`;
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback="loading...">
+      <RouterProvider router={Router} />
+    </Suspense>
   </React.StrictMode>
 );
 
