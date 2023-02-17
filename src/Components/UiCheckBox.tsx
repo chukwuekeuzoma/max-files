@@ -42,6 +42,6 @@ const StyledLabel = styled.label`
 
 const StyledLabelText = styled.span`
   margin-left: 8px;
-  font-size: 16px
+  font-size: 13px;
   font-weight: 400;
 `;
