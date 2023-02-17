@@ -6,6 +6,7 @@ const AuthLayout = lazy(() => import("../Layout/AuthLayout/AuthLayout"));
 
 //Auth
 const SignIn = lazy(() => import("../Pages/Auth/SignIn"));
+const SignUp = lazy(()=> import("../Pages/Auth/SignUp"))
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
         path: "signin",
         element: <SignIn />,
       },
+      {
+        path:"signup",
+        element:<SignUp/>
+      }
     ],
   },
 ]);
