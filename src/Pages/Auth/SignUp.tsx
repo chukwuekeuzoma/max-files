@@ -6,6 +6,9 @@ import UiButton from "../../Components/UiButton";
 import SignUpUser from "../../types/SignUpUser";
 import GoogleLogo from "../../Assets/Svg/Google.svg";
 import { Link } from "react-router-dom";
+import UiForm from "../../Components/UiForm";
+import SignUpSchema from "../../Utils/Validations/SignUpSchema";
+import Api from "../../Api";
 
 export default function SignUp() {
   const [formData, setFormData] = useState<SignUpUser>({
@@ -30,6 +33,14 @@ export default function SignUp() {
     });
   }
 
+  async function handleSubmit() {
+    try {
+      const response = await Api.post("users", formData);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <>
       <WelcomeContainer>
@@ -41,73 +52,79 @@ export default function SignUp() {
       <SignUpAgentText>
         Sign up as an agent instead?<span>Sign up as agent</span>
       </SignUpAgentText>
-      <GridSpacer>
-        <UiInput
-          placeHolder="First name*"
-          value={formData.firstName}
-          name="firstName"
-          // error={errors.firstName}
-          onChange={handleChange}
-        />
-        <UiInput
-          placeHolder="Last name*"
-          name="lastName"
-          value={formData.lastName}
-          // error={errors.lastName}
-          onChange={handleChange}
-        />
-        <UiInput
-          placeHolder="Email address*"
-          name="email"
-          value={formData.email}
-          // error={errors.email}
-          onChange={handleChange}
-        />
-        <UiInput
-          type="phone"
-          placeHolder="e.g 08144045239"
-          name="phone"
-          value={formData.phoneNumber}
-          // error={errors.phoneNumber}
-          onChange={handleChange}
-        />
-        <UiInput
-          type="password"
-          placeHolder="Password*"
-          name="password"
-          value={formData.password}
-          // error={errors.password}
-          onChange={handleChange}
-        />
-        <UiInput
-          type="password"
-          placeHolder="Confirm password*"
-          name="cPassword"
-          value={formData.cPassword}
-          // error={errors.cPassword}
-          onChange={handleChange}
-        />
-      </GridSpacer>
-      <br />
-      <UiCheckBox checked={isChecked} onChange={handleCheckboxChange}>
-        keep me sign in
-      </UiCheckBox>
-      <br />
-      <ButtonContanier>
-        <UiButton textCasing="capitalize">Sign Up</UiButton>
-        <SignWithGoogle>
-          <div>or sign in with</div>
-          <img src={GoogleLogo} alt="Googlelogo" />
-        </SignWithGoogle>
-      </ButtonContanier>
-      <NoAccount>
-       Already have an account? 
-        <span>
-          <Link to="/signin" className="links">
-            Sign In
-          </Link>
-        </span>
-      </NoAccount>
+      <UiForm schema={SignUpSchema} formData={formData} onSubmit={handleSubmit}>
+        {({ errors }) => (
+          <>
+            <GridSpacer>
+              <UiInput
+                placeHolder="First name*"
+                value={formData.firstName}
+                name="firstName"
+                error={errors.firstName}
+                onChange={handleChange}
+              />
+              <UiInput
+                placeHolder="Last name*"
+                name="lastName"
+                value={formData.lastName}
+                error={errors.lastName}
+                onChange={handleChange}
+              />
+              <UiInput
+                placeHolder="Email address*"
+                name="email"
+                value={formData.email}
+                error={errors.email}
+                onChange={handleChange}
+              />
+              <UiInput
+                type="phone"
+                placeHolder="e.g 08144045239"
+                name="phone"
+                value={formData.phoneNumber}
+                error={errors.phoneNumber}
+                onChange={handleChange}
+              />
+              <UiInput
+                type="password"
+                placeHolder="Password*"
+                name="password"
+                value={formData.password}
+                error={errors.password}
+                onChange={handleChange}
+              />
+              <UiInput
+                type="password"
+                placeHolder="Confirm password*"
+                name="cPassword"
+                value={formData.cPassword}
+                error={errors.cPassword}
+                onChange={handleChange}
+              />
+            </GridSpacer>
+            <br />
+            <UiCheckBox checked={isChecked} onChange={handleCheckboxChange}>
+              keep me sign in
+            </UiCheckBox>
+            <br />
+            <ButtonContanier>
+              <UiButton textCasing="capitalize">Sign Up</UiButton>
+              <SignWithGoogle>
+                <div>or sign in with</div>
+                <img src={GoogleLogo} alt="Googlelogo" />
+              </SignWithGoogle>
+            </ButtonContanier>
+            <NoAccount>
+              Already have an account?
+              <span>
+                <Link to="/" className="links">
+                  Sign In
+                </Link>
+              </span>
+            </NoAccount>
+          </>
+        )}
+      </UiForm>
     </>
   );
 }
