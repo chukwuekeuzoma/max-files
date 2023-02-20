@@ -9,7 +9,7 @@ interface Props {
   type?: "text" | "number" | "password" | "phone" | "date";
   value: string | null | number;
   error?: string;
-  placeHolder: string;
+  placeHolder?: string;
   onChange: (event: { name: string; value: null | string }) => void;
 }
 
