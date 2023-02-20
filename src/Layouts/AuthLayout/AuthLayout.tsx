@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import AuthImage from "../../Assets/Svg/AuthImage.svg";
 import Logo from "../../Assets/Svg/AuthLogo.svg";
+import Loader from "../../Components/Loader";
 
 export default function AuthLayout() {
   return (
@@ -13,7 +14,7 @@ export default function AuthLayout() {
       </ImageContainer>
       <FormContainer>
         <div className="form-container-inner">
-          <Suspense fallback="Loading.....">
+          <Suspense fallback={<Loader/>}>
             <Outlet />
           </Suspense>
         </div>
