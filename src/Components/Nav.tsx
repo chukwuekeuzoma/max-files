@@ -26,6 +26,13 @@ export default function Nav() {
 
 const NavContainer = styled.nav`
   background: var(--text-light-100);
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  margin: auto;
+  max-width: 1700px;  
+  z-index:999;
 
   .inner-container {
     display: flex;
