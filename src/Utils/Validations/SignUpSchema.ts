@@ -9,5 +9,5 @@ export default Yup.object({
     .required(isRequiredMessage),
   firstName: Yup.string().required(isRequiredMessage),
   lastName: Yup.string().required(isRequiredMessage),
-  phone: Yup.string().required(isRequiredMessage),
+  phoneNumber: Yup.string().required(isRequiredMessage),
 });
