@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UiInput from "../../Components/UiInput";
 import styled from "styled-components";
 import UiCheckBox from "../../Components/UiCheckBox";
@@ -8,6 +8,7 @@ import GoogleLogo from "../../Assets/Svg/Google.svg";
 import SignInSchema from "../../Utils/Validations/SignInSchema";
 import UiForm from "../../Components/UiForm";
 import Api from "../../Api";
+import  { Toast } from '../../Utils/toast'
 
 export default function SignIn() {
   const [formData, setFormData] = useState<{ email: string; password: string }>(
@@ -18,6 +19,7 @@ export default function SignIn() {
   );
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const Navigate = useNavigate()
 
   function handleCheckboxChange() {
     setIsChecked(!isChecked);
@@ -31,12 +33,17 @@ export default function SignIn() {
   }
 
   async function handleSubmit() {
-    setLoading(true);
-    try {
-      const response = await Api.post("users/login", formData);
-    } catch (e) {
-      console.log(e);
-    }
+   // the Api not Working error code 404;
+
+    // setLoading(true);
+    // try {
+    //   const response = await Api.post("users/login", formData);
+    // } catch (e:any) {
+    //   let msg = e.response.message;
+    //   Toast.error({ msg })
+    // }
+    // setLoading(false)
+    Navigate("/home")
   }
 
   return (
@@ -72,7 +79,7 @@ export default function SignIn() {
             </UiCheckBox>
             <br />
             <ButtonContanier>
-              <UiButton textCasing="capitalize">Sign In</UiButton>
+              <UiButton textCasing="capitalize" loading={loading}>Sign In</UiButton>
               <SignWithGoogle>
                 <div>or sign in with</div>
                 <img src={GoogleLogo} alt="Googlelogo" />
