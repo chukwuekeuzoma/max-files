@@ -5,6 +5,9 @@ import styled from "styled-components";
 import UiCheckBox from "../../Components/UiCheckBox";
 import UiButton from "../../Components/UiButton";
 import GoogleLogo from "../../Assets/Svg/Google.svg";
+import SignInSchema from "../../Utils/Validations/SignInSchema";
+import UiForm from "../../Components/UiForm";
+import Api from "../../Api";
 
 export default function SignIn() {
   const [formData, setFormData] = useState<{ email: string; password: string }>(
@@ -27,6 +30,15 @@ export default function SignIn() {
     });
   }
 
+  async function handleSubmit() {
+    setLoading(true);
+    try {
+      const response = await Api.post("users/login", formData);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <>
       <WelcomeBackConatiner>
@@ -35,42 +47,48 @@ export default function SignIn() {
           <span>We’re always excited to have you back.</span>
         </div>
       </WelcomeBackConatiner>
-      <UiInput
-        placeHolder="Email*"
-        value={formData.email}
-        name="email"
-        // error={errors.email}
-        onChange={handleChange}
-      />
-      <br />
-      <UiInput
-        type="password"
-        placeHolder="Password*"
-        name="password"
-        value={formData.password!}
-        // error={errors.password}
-        onChange={handleChange}
-      />
-      <br />
-      <UiCheckBox checked={isChecked} onChange={handleCheckboxChange}>
-        keep me sign in
-      </UiCheckBox>
-      <br />
-      <ButtonContanier>
-        <UiButton textCasing="capitalize">Sign In</UiButton>
-        <SignWithGoogle>
-          <div>or sign in with</div>
-          <img src={GoogleLogo} alt="Googlelogo" />
-        </SignWithGoogle>
-      </ButtonContanier>
-      <NoAccount>
-        Don’t have an account?
-        <span>
-          <Link to="/signup" className="links">
-            Sign Up
-          </Link>
-        </span>
-      </NoAccount>
+      <UiForm schema={SignInSchema} formData={formData} onSubmit={handleSubmit}>
+        {({ errors }) => (
+          <>
+            <UiInput
+              placeHolder="Email*"
+              value={formData.email}
+              name="email"
+              error={errors.email}
+              onChange={handleChange}
+            />
+            <br />
+            <UiInput
+              type="password"
+              placeHolder="Password*"
+              name="password"
+              value={formData.password!}
+              error={errors.password}
+              onChange={handleChange}
+            />
+            <br />
+            <UiCheckBox checked={isChecked} onChange={handleCheckboxChange}>
+              keep me sign in
+            </UiCheckBox>
+            <br />
+            <ButtonContanier>
+              <UiButton textCasing="capitalize">Sign In</UiButton>
+              <SignWithGoogle>
+                <div>or sign in with</div>
+                <img src={GoogleLogo} alt="Googlelogo" />
+              </SignWithGoogle>
+            </ButtonContanier>
+            <NoAccount>
+              Don’t have an account?
+              <span>
+                <Link to="/signup" className="links">
+                  Sign Up
+                </Link>
+              </span>
+            </NoAccount>
+          </>
+        )}
+      </UiForm>
     </>
   );
 }
