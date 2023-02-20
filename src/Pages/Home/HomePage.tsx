@@ -7,6 +7,9 @@ import {
   HomeSectionThree,
   HomeSectionFour,
   HomeSectionFive,
+  HomeSectionSix,
+  Faq,
+  HomeSectionSeven
 } from "../HomeSections";
 
 export default function HomePage() {
@@ -18,6 +21,11 @@ export default function HomePage() {
       <HomeSectionThree />
       <HomeSectionFour />
       <HomeSectionFive />
+      <HomeSectionSix/>
+      <Faq/>
+      <HomeSectionSeven/>
+      <br/>
+      <br/>
       <Footer />
     </Layout>
   );
