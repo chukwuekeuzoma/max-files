@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import UiForm from "../../Components/UiForm";
 import SignUpSchema from "../../Utils/Validations/SignUpSchema";
 import Api from "../../Api";
-import  { Toast } from '../../Utils/toast'
+import { Toast } from "../../Utils/toast";
 
 export default function SignUp() {
   const [formData, setFormData] = useState<SignUpUser>({
@@ -36,15 +36,15 @@ export default function SignUp() {
   }
 
   async function handleSubmit() {
-     // the Api not Working error code 404;
-     setLoading(true);
+    // the Api not Working error code 404;
+    setLoading(true);
     try {
       const response = await Api.post("users", formData);
-    } catch (e:any) {
+    } catch (e: any) {
       let msg = e.response.message;
-      Toast.error({ msg })
+      Toast.error({ msg });
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
@@ -114,7 +114,9 @@ export default function SignUp() {
             </UiCheckBox>
             <br />
             <ButtonContanier>
-              <UiButton textCasing="capitalize" loading={loading}>Sign Up</UiButton>
+              <UiButton textCasing="capitalize" loading={loading}>
+                Sign Up
+              </UiButton>
               <SignWithGoogle>
                 <div>or sign in with</div>
                 <img src={GoogleLogo} alt="Googlelogo" />

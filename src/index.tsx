@@ -1,12 +1,10 @@
-import React, { Suspense } from "react";
-import { RouterProvider } from "react-router-dom";
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import "./variables.css";
 import "react-phone-number-input/style.css";
-import Router from "./routes/.";
-import Loader from "./Components/Loader"
+import App from "./App";
 
 // @ts-ignore
 window.pxToRem = (px: number, baseSize = 16) => `${px / baseSize}rem`;
@@ -14,9 +12,7 @@ window.pxToRem = (px: number, baseSize = 16) => `${px / baseSize}rem`;
 const root = createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
-    <Suspense fallback={<Loader/>}>
-      <RouterProvider router={Router} />
-    </Suspense>
+     <App/>
   </React.StrictMode>
 );
 

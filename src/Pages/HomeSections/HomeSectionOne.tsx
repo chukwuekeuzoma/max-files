@@ -169,7 +169,7 @@ const SlideContainer = styled.div`
 `;
 
 const SliderItems = styled.div`
-  postion: relative;
+  position: relative;
   background-color: var(--text-light-100);
   height: 150px;
   width: 100px;
